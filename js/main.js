@@ -18,6 +18,7 @@ let program = new Program(gl, [
   'void main() {',
   '  vColor = vec4(color, 1.0);',
   '  gl_Position = u_MvpMatrix * vec4(position, 1.0);',
+  // '  gl_Position = vec4(position, 1.0);',
   '}',
 ].join('\n'), [
   '#ifdef GL_ES',
