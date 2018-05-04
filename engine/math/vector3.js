@@ -136,9 +136,10 @@ export default class Vector3 {
   }
   /**
    * 向量减法
+   * @param {Vector3} other
    */
-  sub(vector3) {
-    let { x, y, z } = vector3;
+  sub(other) {
+    let { x, y, z } = other;
 
     this.x -= x;
     this.y -= y;

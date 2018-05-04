@@ -424,4 +424,84 @@ export default class Matrix4 {
   rotate = function (angle, axis) {
     return this.multiply(new Matrix4().setRotate(angle, axis));
   }
+  /**
+   * 设置为视图矩阵
+   * @param {Vector3} position 
+   * @param {Vector3} target 
+   * @param {Vector3} up 
+   */
+  setLookAt(position, target, up) {
+    let vector = target.clone().sub(position);
+    vector.normalize();
+    
+    let vector1 = vector.clone().product(up).normalize();
+
+    vector1.product(vector);
+
+    let elements = this.elements;
+
+    elements[0] = sx;
+    elements[1] = ux;
+    elements[2] = -fx;
+    elements[3] = 0;
+
+    elements[4] = sy;
+    elements[5] = uy;
+    elements[6] = -fy;
+    elements[7] = 0;
+
+    elements[8] = sz;
+    elements[9] = uz;
+    elements[10] = -fz;
+    elements[11] = 0;
+
+    elements[12] = 0;
+    elements[13] = 0;
+    elements[14] = 0;
+    elements[15] = 1;
+
+    return this.translate(position.clone().mutiply(-1));
+  }
+
+  /**
+   * 比较两个矩阵是否相等
+   * @param {Matrix4} matrix4 
+   */
+  equals(matrix4) {
+    let els = this.elements,
+        other = matrix4.elements, i = 0;
+
+    for (; i < 16; i++) {
+      if (els[i] != other[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * 从一个普通数组设置矩阵的值
+   * @param {Array} array 
+   */
+  fromArray(array) {
+    let i = 0, elements = this.elements;
+    for (; i < 16; i++) {
+      elements[i] = array[i];
+    }
+
+    return this;
+  }
+
+  /**
+   * 
+   * @param {*} array 
+   */
+  toArray(array = new Array()) {
+    let elements = this.elements;
+    for (; i < 16; i++) {
+      array[i] = elements[i];
+    }
+
+    return array
+  }
 }
