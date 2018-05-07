@@ -1,9 +1,10 @@
 import Vector3 from '../math/vector3';
 import Matrix4 from '../math/matrix4';
+import Object3D from '../core/object';
 /**
  * 相机基础类
  */
-export default class Camera {
+export default class Camera extends Object3D {
     constructor() {
         // 相机位置
         this.position = new Vector3();
@@ -15,9 +16,7 @@ export default class Camera {
         this.projectionMatrix = new Matrix4();
     }
 
-    lookAt(target) {
-
-    }
+    isCamera = true;
 
     updateMatrix() {
         let pos = this.position.clone();

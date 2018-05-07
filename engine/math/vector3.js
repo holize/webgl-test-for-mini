@@ -15,7 +15,7 @@ export default class Vector3 {
     this.x = x;
     this.y = y;
     this.z = z;
-  }
+  }  
 
   /**
    * 重置向量
