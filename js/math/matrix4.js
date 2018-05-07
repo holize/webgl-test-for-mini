@@ -571,6 +571,8 @@ Matrix4.prototype.rotate = function (angle, x, y, z) {
 Matrix4.prototype.setLookAt = function (eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ) {
   var e, fx, fy, fz, rlf, sx, sy, sz, rls, ux, uy, uz;
 
+  debugger
+
   fx = centerX - eyeX;
   fy = centerY - eyeY;
   fz = centerZ - eyeZ;

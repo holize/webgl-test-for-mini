@@ -6,12 +6,7 @@ import Object3D from '../core/object';
  */
 export default class Camera extends Object3D {
     constructor() {
-        // 相机位置
-        this.position = new Vector3();
-        // 方向
-        this.up = new Vector3(0, 1, 0);
-        // 旋转角度
-        this.rotation = new Vector3();
+        super();
 
         this.projectionMatrix = new Matrix4();
     }

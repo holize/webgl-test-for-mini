@@ -1,6 +1,8 @@
 import Cube from '../js/base/cube.js';
 import Program from '../js/base/program.js';
-import Matrix4 from '../js/math/matrix4.js';
+import Matrix4 from '../engine/math/matrix4.js';
+import Vector3 from '../engine/math/vector3.js';
+import Object3D from '../engine/core/object.js';
 
 const screenWidth = window.innerWidth
 const screenHeight = window.innerHeight
@@ -39,8 +41,9 @@ export default () =>{
 
   var mvpMatrix = new Matrix4();
   mvpMatrix.setPerspective(30, screenWidth / screenHeight, 1, 100);
-  mvpMatrix.lookAt(13, 13, 17, 0, 0, 0, 0, 1, 0);
-
+  mvpMatrix.lookAt(new Vector3(13, 13, 17), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+  var s;
+  console.log(s = new Object3D());
   var u_MvpMatrix = gl.getUniformLocation(program.getProgram(), 'u_MvpMatrix');
   gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements);
 

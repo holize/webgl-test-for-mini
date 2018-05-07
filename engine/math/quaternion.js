@@ -4,7 +4,7 @@ import Matrix4 from './matrix4';
 import Vector3 from './vector3';
 
 export default class Quaternion {
-    constructor(x, y, z, w) {        
+    constructor(x = 0, y = 0, z = 0, w = 0) {
         this._x = x;
         this._y = y;
         this._z = z;

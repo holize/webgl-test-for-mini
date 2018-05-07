@@ -15,7 +15,7 @@ export default class Vector3 {
     this.x = x;
     this.y = y;
     this.z = z;
-  }  
+  }
 
   /**
    * 重置向量
@@ -64,7 +64,7 @@ export default class Vector3 {
    */
   length() {
     let {x, y, z} = this;
-    return Math.sqrt(x ** 2, y ** 2, z ** 2);
+    return Math.sqrt(x ** 2 + y ** 2 + z ** 2);
   }
   /**
    * 归一化处理
@@ -79,6 +79,7 @@ export default class Vector3 {
    * @param num {number}
    */
   divided(num) {
+      debugger
     this.x /= num;
     this.y /= num;
     this.z /= num;
@@ -103,7 +104,7 @@ export default class Vector3 {
    */
   product(vector3) {
     let { x, y, z } = this;
-    let { x1, y1, z1 } = vector3;
+    let { x: x1, y: y1, z: z1 } = vector3;
 
     this.x = y * z1 - y1 * z;
     this.y = x1 * z - x * z1;
@@ -117,7 +118,7 @@ export default class Vector3 {
    */
   dot(vector3) {
     let { x, y, z } = this;
-    let { x1, y1, z1 } = vector3;
+    let { x: x1, y: y1, z: z1 } = vector3;
 
     return x * x1 + y * y1 + z * z1;
   }
@@ -146,7 +147,7 @@ export default class Vector3 {
     this.z -= z;
 
     return this;
-  }
+  }  
 
   /**
    * 转化为数据形式
