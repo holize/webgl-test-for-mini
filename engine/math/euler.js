@@ -7,7 +7,7 @@ const helpMatrix = new Matrix4();
  * 此类为旋转顺序为XYZ的欧拉角
  */
 export default class Euler {
-    constructor(x, y, z) {
+    constructor(x = 0, y = 0, z = 0) {
         this._x = x;
         this._y = y;
         this._z = z;

@@ -4,7 +4,7 @@ import Matrix4 from './matrix4';
 import Vector3 from './vector3';
 
 export default class Quaternion {
-    constructor(x = 0, y = 0, z = 0, w = 0) {
+    constructor(x = 0, y = 0, z = 0, w = 1) {
         this._x = x;
         this._y = y;
         this._z = z;
@@ -53,6 +53,28 @@ export default class Quaternion {
         this._w = w;
 
         this._propChange();
+    }
+
+    length() {
+      let {x, y, z, w} = this;
+      return Math.sqrt(x ** 2 + y ** 2 + z ** 2 + w ** 2);
+    }
+
+    normalize() {
+      let length = this.length();
+      if (length === 1) {
+        this._x = 0;
+        this._y = 0;
+        this._z = 0;
+        this._w = 1;
+      } else {
+        this._x /= length;
+        this._y /= length;
+        this._z /= length;
+        this._w /= length;
+      }
+
+      return this;
     }
 
     /**
@@ -121,10 +143,10 @@ export default class Quaternion {
             cy = cos(hy),
             cz = cos(hz);
 
-        this._x = sy * sz * cx + cy * cz * sy;
-        this._y = sy * cz * cx + cy * sz * sx;
-        this._z = cy * sz * cx - sy * cz * sx;
-        this._w = cy * cz * cx - sy * sz * sx;
+        this._w = cx * cy * cz + sx * sy * sz;
+        this._x = sx * cy * cz - cx * sy * sz;
+        this._y = cx * sy * cz + sx * cy * sz;
+        this._z = cx * cy * sz - sx * sy * cz;
     
         fireUpdate && this._propChange();
 

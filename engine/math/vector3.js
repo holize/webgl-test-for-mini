@@ -78,8 +78,7 @@ export default class Vector3 {
    * 向量除以数量
    * @param num {number}
    */
-  divided(num) {
-      debugger
+  divided(num) {      
     this.x /= num;
     this.y /= num;
     this.z /= num;

@@ -418,12 +418,7 @@ export default class Matrix4 {
      * @param {Vector3} position 
      */
     translate(position) {
-        let elements = this.elements,
-            {
-                x,
-                y,
-                z
-            } = position;
+        let elements = this.elements;
         elements[12] = position.x;
         elements[13] = position.y;
         elements[14] = position.z;
@@ -591,8 +586,6 @@ export default class Matrix4 {
 
         helpVector3.copy(target).sub(position);
         helpVector3.normalize();
-
-        debugger
         
         let tmp = helpVector3.clone();
 
@@ -644,18 +637,17 @@ export default class Matrix4 {
             x2 = 2 * x,
             y2 = 2 * y,
             z2 = 2 * z,
-            w2 = 2 * w,
             xx = x2 * x,
             yy = y2 * y,
             zz = z2 * z,
             xy = x2 * y,
             xz = x2 * z,
             yz = y2 * z,
-            wx = w2 * x,
-            wy = w2 * y,
-            wz = w2 * z;
+            wx = w * x2,
+            wy = w * y2,
+            wz = w * z2;
 
-        elements[0] = 1 - xx - yy;
+        elements[0] = 1 - yy - zz;
         elements[1] = xy + wz;
         elements[2] = xz - wy;
         elements[3] = 0;
@@ -876,12 +868,32 @@ export default class Matrix4 {
      * @param {*} array 
      */
     toArray(array = new Array()) {
-        let elements = this.elements;
+        let elements = this.elements, i = 0;
         for (; i < 16; i++) {
             array[i] = elements[i];
         }
 
         return array
+    }
+
+    copy(target) {
+      let elements = target.elements, i = 0,
+          els = this.elements;
+      for (; i < 16; i++) {
+        els[i] = elements[i];
+      }
+
+      return this;
+    }
+
+    clone(target = new Matrix4()) {
+      let elements = target.elements, i = 0,
+          els = this.elements;
+      for (; i < 16; i++) {
+        elements[i] = els[i];
+      }
+
+      return target;
     }
 }
 
