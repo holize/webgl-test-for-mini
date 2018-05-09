@@ -116,7 +116,7 @@ export default class Cube {
 
     // 将数据写入缓存对象
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);    
 
     buffer.num = num;
     buffer.type = type;

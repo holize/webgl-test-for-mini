@@ -246,7 +246,7 @@ export default class Matrix4 {
 
     /**
      * 设置为透视矩阵
-     * @param {number} fovy 视角
+     * @param {number} fovy 视角 单位度
      * @param {number} aspect 透视的方向比例
      * @param {number} near 近景深度
      * @param {number} far  远景深度

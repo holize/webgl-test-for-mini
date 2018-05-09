@@ -15,6 +15,8 @@ let gl = canvas.getContext('webgl', {
   preserveDrawingBuffer: true
 });
 
+// gl.viewport(0,0, screenWidth / 2, screenHeight / 2);
+
 let program = new Program(gl, [
   'attribute vec3 position;',
   'attribute vec3 color;',
@@ -69,9 +71,9 @@ export default () =>{
     modelRotation.y = time * 0.5;
     // modelRotation.z = time * 0.5;
 
-    modelScale.x = Math.sqrt(Math.sin(time * 0.5));
-    modelScale.y = Math.sqrt(Math.sin(time * 0.5));
-    modelScale.z = Math.sqrt(Math.sin(time * 0.5));
+    // modelScale.x = Math.sqrt(Math.sin(time * 0.5));
+    // modelScale.y = Math.sqrt(Math.sin(time * 0.5));
+    // modelScale.z = Math.sqrt(Math.sin(time * 0.5));
 
     // console.log(modelQuaternion.fromEuler(modelRotation))
 

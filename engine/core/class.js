@@ -38,7 +38,9 @@ Class.prototype = Object.assign({}, Object.prototype, {
             helpVector.set(x, y, z);
         }
 
-        helpMatrix.lookAt(helpVector, this.position, this.up);
+        helpMatrix.setLookAt(helpVector, this.position, this.up);
+        
+        this.rotation.fromRotateMatrix(helpMatrix);
     },
     updateMatrix() {
 

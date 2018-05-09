@@ -1,41 +1,30 @@
 import Vector3 from '../math/vector3';
 import Matrix4 from '../math/matrix4';
-import Object3D from '../core/object';
+import Class from '../core/class';
+
+const helpVector = new Vector3();
+const helpMatrix = new Matrix4();
 /**
  * 相机基础类
  */
-export default class Camera extends Object3D {
-    constructor() {
-        super();
-
-        this.projectionMatrix = new Matrix4();
-    }
-
-    isCamera = true;
-
-    updateMatrix() {
-        let pos = this.position.clone();
-        pos.sub(this.target);
-        // Normalize f.
-        rlf = 1 / Math.sqrt(fx * fx + fy * fy + fz * fz);
-        fx *= rlf;
-        fy *= rlf;
-        fz *= rlf;
-
-        // Calculate cross product of f and up.
-        sx = fy * upZ - fz * upY;
-        sy = fz * upX - fx * upZ;
-        sz = fx * upY - fy * upX;
-
-        // Normalize s.
-        rls = 1 / Math.sqrt(sx * sx + sy * sy + sz * sz);
-        sx *= rls;
-        sy *= rls;
-        sz *= rls;
-
-        // Calculate cross product of s and f.
-        ux = sy * fz - sz * fy;
-        uy = sz * fx - sx * fz;
-        uz = sx * fy - sy * fx;
-    }
+const Camera = function() {
+    Class.call(this);
+    this.projectionMatrix = new Matrix4();
 }
+
+Camera.prototype = Object.assign({}, Class.prototype, {
+    isCamera: true,
+    lookAt(x, y, z) {
+        if (x instanceof Vector3) {
+            helpVector.copy(x);
+        } else {
+            helpVector.set(x, y, z);
+        }
+
+        helpMatrix.setLookAt(this.position, helpVector, this.up);
+
+        this.rortation.fromRotateMatrix(helpMatrix);
+    },
+});
+
+export default Camera;
