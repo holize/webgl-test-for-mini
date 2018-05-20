@@ -1,18 +1,27 @@
-import Class from "./class";
+import Object3D from "./object3D";
 import Attribute from './attribute';
+import Vector3 from "../math/vector3";
+
+
+const helpVector = new Vector3();
+const helpVector0 = new Vector3();
+const range = [-(10e-6), 10e-6];
 
 const Geometry = function(points) {
-    Class.call(this);
+    Object3D.call(this);
 
     // 点
     this.vertexes = new Attribute('position');
     // 索引
     this.indexes = null;
 
+    // 法向量
     this.normals = new Attribute('normal');
 }
 
-Geometry.prototype = Object.assign({}, Class.prototype, {
+Geometry.prototype = Object.assign({}, Object3D.prototype, {
+    constructor: Geometry,
+    isGeometry: true,
     /**
      * 从点集合中获取模型顶点数据
      * @param {Array} points 点集合

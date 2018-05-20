@@ -43,7 +43,7 @@ export default class Attribute {
 
     /**
      * 更新缓存区对象数据
-     * @param {WebGLRenderingContext | WebGL2RenderingContext} gl 
+     * @param {WebGLRenderingContext | WebGL2RenderingContext} gl
      */
     updateBuffer(gl) {
         // 绑定缓存区对象

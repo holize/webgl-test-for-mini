@@ -4,7 +4,7 @@ import Matrix4 from '../engine/math/matrix4.js';
 import Vector3 from '../engine/math/vector3.js';
 import Quaternion from '../engine/math/quaternion.js';
 import Euler from '../engine/math/euler.js';
-import Object3D from '../engine/core/object.js';
+import Object3D from '../engine/core/object3D';
 
 const screenWidth = window.innerWidth
 const screenHeight = window.innerHeight

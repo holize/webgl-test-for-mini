@@ -3,9 +3,9 @@ import Matrix4 from "../math/matrix4";
 import Quaternion from "../math/quaternion";
 import Euler from "../math/euler";
 
-import {defineReadOnlyProperty} from '../util';
+import {defineReadOnlyProperty} from '../util/index';
 
-const id = 0;
+let id = 0;
 const helpQuaternion = new Quaternion();
 const helpVector = new Vector3();
 const helpMatrix = new Matrix4();
@@ -16,12 +16,12 @@ const helpMatrix = new Matrix4();
  * @property {Euler} rotation 物体旋转属性，只读
  * @property {Vector3} scale 物体伸缩属性，只读
  */
-const Class = function() {
+const Object3D = function() {
     this.id =  'Object' + (++id);
     this.name = '';
 
     // 物体方向
-    this.up = Class.defaultUp.clone();
+    this.up = Object3D.defaultUp.clone();
 
     defineReadOnlyProperty(this, 'position', new Vector3());
     defineReadOnlyProperty(this, 'rotation', new Euler());
@@ -30,7 +30,9 @@ const Class = function() {
     this.matrix = new Matrix4();
 }
 
-Class.prototype = Object.assign({}, Object.prototype, {
+Object3D.prototype = Object.assign({}, Object.prototype, {
+    constructor: Object3D,
+    isObject3D: true,
     lookAt(x, y, z) {
         if (x instanceof Vector3) {
             helpVector.copy(x);
@@ -50,6 +52,6 @@ Class.prototype = Object.assign({}, Object.prototype, {
 /**
  * 物体默认方向
  */
-Class.defaultUp = new Vector3(0, 1, 0);
+Object3D.defaultUp = new Vector3(0, 1, 0);
 
-export default Class;
+export default Object3D;

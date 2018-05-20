@@ -13,6 +13,7 @@ const Camera = function() {
 }
 
 Camera.prototype = Object.assign({}, Class.prototype, {
+    constructor: Camera,
     isCamera: true,
     lookAt(x, y, z) {
         if (x instanceof Vector3) {
